@@ -127,7 +127,7 @@ Contributor: [Florent Champigny][florent]
     See the License for the specific language governing permissions and
     limitations under the License.
 
-[repo]: https://github.com/--------
+[repo]: https://github.com/Meetic/Dragueur
 [bintray]: https://bintray.com/-------/_latestVersion
 [androidarsenal]: http://android-arsenal.com/details/--------
 [meetic]: http://www.meetic.fr/

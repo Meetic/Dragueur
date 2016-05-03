@@ -24,4 +24,33 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
 }
 
-apply from: 'artifactory.gradle'
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'dragueur'
+    orgName = 'meetic'
+
+    publishedGroupId = 'com.meetic.dragueur'
+    libraryName = 'Dragueur'
+    artifact = 'dragueur'
+
+    libraryDescription = 'Dragueur'
+
+    siteUrl = 'https://github.com/Meetic/Dragueur'
+    gitUrl = 'https://github.com/Meetic/Dragueur.git'
+
+    libraryVersion = rootProject.ext.libraryVersion
+
+    developerId = 'meetic'
+    developerName = 'meetic'
+    developerEmail = 'champigny.florent@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: rootProject.file('gradle/install-v1.gradle')
+    apply from: rootProject.file('gradle/bintray-android-v1.gradle')
+}
