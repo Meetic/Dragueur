@@ -26,8 +26,8 @@ dependencies {
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'dragueur'
-    orgName = 'meetic'
+    bintrayName = 'Dragueur'
+    orgName = 'meetic-android'
 
     publishedGroupId = 'com.meetic.dragueur'
     libraryName = 'Dragueur'
@@ -40,8 +40,8 @@ ext {
 
     libraryVersion = rootProject.ext.libraryVersion
 
-    developerId = 'meetic'
-    developerName = 'meetic'
+    developerId = 'meetic-android'
+    developerName = 'meetic-android'
     developerEmail = 'champigny.florent@gmail.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
