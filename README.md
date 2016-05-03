@@ -94,7 +94,7 @@ Dragueur comes with `ReturnOriginViewAnimator` and `ExitViewAnimator`
 
 Add into your **build.gradle**
 
-[![Download](https://api.bintray.com/packages/-------/images/download.svg)][bintray]
+[ ![Download](https://api.bintray.com/packages/meetic-android/maven/Dragueur/images/download.svg) ](https://bintray.com/meetic-android/maven/Dragueur/_latestVersion)
 
 ```groovy
 compile 'com.meetic.dragueur:dragueur:(last version)'
@@ -128,7 +128,6 @@ Contributor: [Florent Champigny][florent]
     limitations under the License.
 
 [repo]: https://github.com/Meetic/Dragueur
-[bintray]: https://bintray.com/-------/_latestVersion
 [androidarsenal]: http://android-arsenal.com/details/--------
 [meetic]: http://www.meetic.fr/
 [florent]: https://github.com/florent37
