@@ -18,9 +18,9 @@ Just declare a DraggableView into your layout
       android:layout_width="200dp"
       android:layout_height="200dp"
       >
-      
+
       <!-- YOUR CONTENT -->
-      
+
 <com.meetic.dragueur.DraggableView/>
 ```
 
@@ -45,12 +45,12 @@ draggableView.setRotationValue(10f);
 draggableView.setDragListener(new DraggableView.DraggableViewListener() {
             @Override
             public void onDrag(DraggableView draggableView, float percentX, float percentY) {
-                 
+
             }
 
             @Override
             public void onDraggedStarted(DraggableView draggableView, Direction direction) {
-                
+
             }
 
             @Override
@@ -60,7 +60,7 @@ draggableView.setDragListener(new DraggableView.DraggableViewListener() {
 
             @Override
             public void onDragCancelled(DraggableView draggableView) {
-                 
+
             }
         });
 ```
@@ -97,6 +97,10 @@ Add into your **build.gradle**
 [ ![Download](https://api.bintray.com/packages/meetic-android/maven/Dragueur/images/download.svg) ](https://bintray.com/meetic-android/maven/Dragueur/_latestVersion)
 
 ```groovy
+repositories {
+  maven { url "http://dl.bintray.com/meetic-android/maven" }
+}
+
 compile 'com.meetic.dragueur:dragueur:(last version)'
 ```
 
@@ -131,4 +135,3 @@ Contributor: [Florent Champigny][florent]
 [androidarsenal]: http://android-arsenal.com/details/--------
 [meetic]: http://www.meetic.fr/
 [florent]: https://github.com/florent37
-
