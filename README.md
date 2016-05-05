@@ -2,7 +2,7 @@ Dragueur
 ========
 
 [![API](https://img.shields.io/badge/API-10%2B-green.svg)][repo]
-[![Android Arsenal](https://img.shields.io/badge/---------brightgreen.svg?style=flat)][androidarsenal]
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Dragueur-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3534)
 
 Dragueur can move any view with one finger ;)
 
@@ -97,10 +97,6 @@ Add into your **build.gradle**
 [ ![Download](https://api.bintray.com/packages/meetic-android/maven/Dragueur/images/download.svg) ](https://bintray.com/meetic-android/maven/Dragueur/_latestVersion)
 
 ```groovy
-repositories {
-  maven { url "http://dl.bintray.com/meetic-android/maven" }
-}
-
 compile 'com.meetic.dragueur:dragueur:(last version)'
 ```
 
