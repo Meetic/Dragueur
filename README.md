@@ -2,6 +2,7 @@ Dragueur
 ========
 
 [![API](https://img.shields.io/badge/API-10%2B-green.svg)][repo]
+[![Build Status](https://travis-ci.org/Meetic/Dragueur.svg?branch=master)](https://travis-ci.org/Meetic/Dragueur)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Dragueur-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3534)
 
 Dragueur can move any view with one finger ;)
