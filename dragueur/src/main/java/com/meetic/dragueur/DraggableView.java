@@ -31,6 +31,8 @@ public class DraggableView extends FrameLayout {
     float rotationValue;
     boolean animating;
     float minVelocity;
+    int exitDiration = DEFAULT_EXIT_DURATION;
+    int returnOriginDuration = ReturnOriginViewAnimator.ANIMATION_RETURN_TO_ORIGIN_DURATION;
     DraggableViewListener dragListener;
     GestureDetectorCompat detector;
     @Nullable
@@ -130,6 +132,22 @@ public class DraggableView extends FrameLayout {
 
     public void setVertical(boolean vertical) {
         this.vertical = vertical;
+    }
+
+    public int getExitDiration() {
+        return exitDiration;
+    }
+
+    public void setExitDiration(int exitDiration) {
+        this.exitDiration = exitDiration;
+    }
+
+    public int getReturnOriginDuration() {
+        return returnOriginDuration;
+    }
+
+    public void setReturnOriginDuration(int returnOriginDuration) {
+        this.returnOriginDuration = returnOriginDuration;
     }
 
     //translationX == 0 => 0
@@ -318,7 +336,7 @@ public class DraggableView extends FrameLayout {
                     (vertical && percentY > maxDragPercentageY && animateExit(Direction.BOTTOM)) ||
                     (vertical && percentY < -maxDragPercentageY && animateExit(Direction.TOP));
             if (!animated) {
-                animateToOrigin(ReturnOriginViewAnimator.ANIMATION_RETURN_TO_ORIGIN_DURATION);
+                animateExit(Direction.NONE);
             }
         }
     }
@@ -337,10 +355,14 @@ public class DraggableView extends FrameLayout {
         return parentHeight;
     }
 
-    boolean animateExit(Direction direction) {
+    public boolean animateExit(Direction direction) {
         boolean animateExit = false;
         if (viewAnimator != null) {
-            animateExit = viewAnimator.animateExit(DraggableView.this, direction, DEFAULT_EXIT_DURATION);
+            if(direction == Direction.NONE){
+                animateToOrigin(returnOriginDuration);
+            } else {
+                animateExit = viewAnimator.animateExit(DraggableView.this, direction, exitDiration);
+            }
         }
 
         if (animateExit) {
