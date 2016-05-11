@@ -41,6 +41,7 @@ public class DraggableView extends FrameLayout {
     //ReturnOriginViewAnimator will reset the view to this positions
     float originalViewX = 0;
     float originalViewY = 0;
+    float touchInterceptSensibility = 33;
 
     public DraggableView(Context context) {
         this(context, null);
@@ -55,17 +56,17 @@ public class DraggableView extends FrameLayout {
         initialize(context);
     }
 
-    public void setViewAnimator(@Nullable ViewAnimator viewAnimator) {
-        this.viewAnimator = viewAnimator;
-    }
-
     @Nullable
     public ViewAnimator<DraggableView> getViewAnimator() {
         return viewAnimator;
     }
 
-    public void animateToOrigin(int duration){
-        if(viewAnimator != null){
+    public void setViewAnimator(@Nullable ViewAnimator viewAnimator) {
+        this.viewAnimator = viewAnimator;
+    }
+
+    public void animateToOrigin(int duration) {
+        if (viewAnimator != null) {
             viewAnimator.animateToOrigin(this, duration);
         }
     }
@@ -194,6 +195,14 @@ public class DraggableView extends FrameLayout {
         this.maxDragPercentageX = maxDragPercentageX;
     }
 
+    public float getTouchInterceptSensibility() {
+        return touchInterceptSensibility;
+    }
+
+    public void setTouchInterceptSensibility(float touchInterceptSensibility) {
+        this.touchInterceptSensibility = touchInterceptSensibility;
+    }
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         final int action = MotionEventCompat.getActionMasked(event);
@@ -204,12 +213,13 @@ public class DraggableView extends FrameLayout {
                 motionYOrigin = event.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
                 actionUp();
                 break;
             case MotionEvent.ACTION_MOVE: {
                 float newMotionX = event.getRawX();
                 float newMotionY = event.getRawY();
-                return (Math.abs(motionXOrigin - newMotionX) > 10 || Math.abs(motionYOrigin - newMotionY) > 10);
+                return (Math.abs(motionXOrigin - newMotionX) > touchInterceptSensibility || Math.abs(motionYOrigin - newMotionY) > touchInterceptSensibility);
             }
         }
         return super.onInterceptTouchEvent(event);
@@ -282,6 +292,25 @@ public class DraggableView extends FrameLayout {
         this.originalViewY = ViewCompat.getTranslationY(this);
     }
 
+    public boolean animateExit(Direction direction) {
+        boolean animateExit = false;
+        if (viewAnimator != null) {
+            if (direction == Direction.NONE) {
+                animateToOrigin(returnOriginDuration);
+            } else {
+                animateExit = viewAnimator.animateExit(DraggableView.this, direction, exitDiration);
+            }
+        }
+
+        if (animateExit) {
+            if (dragListener != null) {
+                dragListener.onDraggedStarted(this, direction);
+            }
+        }
+
+        return animateExit;
+    }
+
     boolean handleTouch(MotionEvent event) {
         if (draggable && !animating) {
             boolean handledByDetector = this.detector.onTouchEvent(event);
@@ -289,11 +318,8 @@ public class DraggableView extends FrameLayout {
 
                 final int action = MotionEventCompat.getActionMasked(event);
                 switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        //motionXOrigin = event.getRawX();
-                        //motionYOrigin = event.getRawY();
-                        break;
                     case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
                         actionUp();
                         break;
                     case MotionEvent.ACTION_MOVE: {
@@ -353,25 +379,6 @@ public class DraggableView extends FrameLayout {
             parentHeight = ((View) getParent()).getHeight();
         }
         return parentHeight;
-    }
-
-    public boolean animateExit(Direction direction) {
-        boolean animateExit = false;
-        if (viewAnimator != null) {
-            if(direction == Direction.NONE){
-                animateToOrigin(returnOriginDuration);
-            } else {
-                animateExit = viewAnimator.animateExit(DraggableView.this, direction, exitDiration);
-            }
-        }
-
-        if (animateExit) {
-            if (dragListener != null) {
-                dragListener.onDraggedStarted(this, direction);
-            }
-        }
-
-        return animateExit;
     }
 
     private void initialize(Context context) {

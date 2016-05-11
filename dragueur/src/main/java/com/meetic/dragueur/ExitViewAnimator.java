@@ -37,11 +37,11 @@ public class ExitViewAnimator<D extends DraggableView> extends ReturnOriginViewA
         switch (direction) {
             case LEFT:
             case RIGHT:
-                animator = ViewCompat.animate(draggableView).translationX(translation);
+                animator = ViewCompat.animate(draggableView).withLayer().translationX(translation);
                 break;
             case TOP:
             case BOTTOM:
-                animator = ViewCompat.animate(draggableView).translationY(translation);
+                animator = ViewCompat.animate(draggableView).withLayer().translationY(translation);
                 break;
         }
 

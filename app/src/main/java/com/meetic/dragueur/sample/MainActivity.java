@@ -23,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         draggableView.setRotationValue(10f);
         draggableView.setRotationEnabled(true);
-        //draggableView.setViewAnimator(new ExitViewAnimator());
+        draggableView.setViewAnimator(new ExitViewAnimator());
+        draggableView.setDragListener(new DraggableView.DraggableViewListenerAdapter() {
+            @Override
+            public void onDraggedEnded(DraggableView draggableView, Direction direction) {
+                super.onDraggedEnded(draggableView, direction);
+                draggableView.setDraggable(true);
+                draggableView.animateToOrigin(300);
+            }
+        });
     }
 }
