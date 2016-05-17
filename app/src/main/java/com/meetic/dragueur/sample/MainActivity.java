@@ -23,43 +23,14 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         draggableView.setRotationValue(10f);
         draggableView.setRotationEnabled(true);
-        draggableView.setViewAnimator(new ViewAnimator() {
-            @Override
-            public boolean animateExit(@NonNull DraggableView draggableView, Direction direction, int duration) {
-                return false;
-            }
-
-            @Override
-            public boolean animateToOrigin(@NonNull DraggableView draggableView, int duration) {
-                return false;
-            }
-
-            @Override
-            public void update(@NonNull DraggableView draggableView, float percentX, float percentY) {
-
-            }
-        });
-        draggableView.setDragListener(new DraggableView.DraggableViewListener() {
-            @Override
-            public void onDrag(DraggableView draggableView, float percentX, float percentY) {
-
-            }
-
-            @Override
-            public void onDraggedStarted(DraggableView draggableView, Direction direction) {
-
-            }
-
+        draggableView.setViewAnimator(new ExitViewAnimator());
+        draggableView.setDragListener(new DraggableView.DraggableViewListenerAdapter() {
             @Override
             public void onDraggedEnded(DraggableView draggableView, Direction direction) {
-
-            }
-
-            @Override
-            public void onDragCancelled(DraggableView draggableView) {
-
+                super.onDraggedEnded(draggableView, direction);
+                draggableView.setDraggable(true);
+                draggableView.animateToOrigin(300);
             }
         });
-        //draggableView.setViewAnimator(new ExitViewAnimator());
     }
 }

@@ -23,6 +23,7 @@ public abstract class ReturnOriginViewAnimator<D extends DraggableView> implemen
         draggableView.setAnimating(true);
 
         ViewCompat.animate(draggableView)
+            .withLayer()
             .translationX(draggableView.getOriginalViewX())
             .translationY(draggableView.getOriginalViewY())
             .rotation(0f)
