@@ -79,4 +79,9 @@ public class ExitViewAnimator<D extends DraggableView> extends ReturnOriginViewA
 
         return true;
     }
+
+    @Nullable
+    public Direction getLastExitDirection() {
+        return lastExitDirection;
+    }
 }
