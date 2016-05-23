@@ -1,6 +1,7 @@
 package com.meetic.dragueur;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
@@ -11,8 +12,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ExitViewAnimator<D extends DraggableView> extends ReturnOriginViewAnimator<D> {
 
+    @Nullable
+    Direction lastExitDirection;
+
     @Override
     public boolean animateExit(@NonNull final D draggableView, final Direction direction, int duration) {
+        lastExitDirection = direction;
         draggableView.setDraggable(false);
         draggableView.setAnimating(true);
 
@@ -49,6 +54,7 @@ public class ExitViewAnimator<D extends DraggableView> extends ReturnOriginViewA
 
         animator
             .setDuration(duration)
+            .withLayer()
             .setUpdateListener(new ViewPropertyAnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(View view) {

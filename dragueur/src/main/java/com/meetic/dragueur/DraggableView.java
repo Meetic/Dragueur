@@ -367,14 +367,14 @@ public class DraggableView extends FrameLayout {
         }
     }
 
-    float getParentWidth() {
+    public float getParentWidth() {
         if (parentWidth == 0) {
             parentWidth = ((View) getParent()).getWidth();
         }
         return parentWidth;
     }
 
-    float getParentHeight() {
+    public float getParentHeight() {
         if (parentHeight == 0) {
             parentHeight = ((View) getParent()).getHeight();
         }
